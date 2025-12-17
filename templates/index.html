@@ -1,0 +1,1006 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customer Database</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav-bar">
+        <button onclick="showSection('form-sec')">Add Record</button>
+        <button onclick="loadHistory()">Customer Info</button>
+      </div>
+
+      <div id="form-sec" class="page">
+        <h2>New Registration</h2>
+        <form id="regForm">
+          <input type="text" name="name" placeholder="Full Name" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+          <input type="text" name="phone" placeholder="Phone" required />
+          <input type="date" name="dob" required />
+          <div class="options">
+            License: <input type="radio" name="license" value="Yes" /> Yes
+            <input type="radio" name="license" value="No" checked /> No
+          </div>
+          <input type="file" name="photo" accept="image/*" />
+          <button type="submit" class="save-btn">Save to Cloud</button>
+        </form>
+      </div>
+
+      <div id="history-sec" class="page" style="display: none">
+        <h2>History</h2>
+        <div id="display-list"></div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html> -->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Registration Portal</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="overlay">
+      <nav class="top-nav">
+        <button class="nav-btn" onclick="showPage('form-page')">
+          Add New Register
+        </button>
+        <button class="nav-btn" onclick="loadHistory()">Customer Info</button>
+      </nav>
+
+      <main class="main-container">
+        <section id="form-page" class="page">
+          <div class="glass-card">
+            <h1>Regestration Form</h1>
+            <form id="regForm">
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <input type="date" name="dob" required />
+              </div>
+
+              <div class="custom-select">
+                <span>Driving License:</span>
+                <label
+                  ><input type="radio" name="license" value="Yes" /> Yes</label
+                >
+                <label
+                  ><input type="radio" name="license" value="No" checked />
+                  No</label
+                >
+              </div>
+
+              <div class="file-input">
+                <label>Upload Profile Photo</label>
+                <input type="file" name="photo" accept="image/*" />
+              </div>
+
+              <button type="submit" class="submit-btn">Register Now</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="history-page" class="page" style="display: none">
+          <div class="history-container">
+            <h1>Registered Customers</h1>
+            <div id="history-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
+-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Full Screen Registration Portal</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="overlay">
+      <nav class="top-nav">
+        <button class="nav-btn" onclick="showPage('form-page')">
+          New Entry
+        </button>
+        <button class="nav-btn" onclick="loadHistory()">View History</button>
+      </nav>
+
+      <main class="main-container">
+        <section id="form-page" class="page">
+          <div class="glass-card">
+            <h1>Registration Form</h1>
+            <form id="regForm">
+              <div class="custom-select">
+                <span>Membership Type:</span>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="membership"
+                      value="KAA with KMTS"
+                      checked
+                    />
+                    KAA with KMTS</label
+                  >
+                  <label
+                    ><input type="radio" name="membership" value="Only KMTS" />
+                    Only KMTS</label
+                  >
+                </div>
+              </div>
+
+              <div class="input-group">
+                <div class="field">
+                  <label>Enrollment No.</label>
+                  <input type="text" name="enrollment" required />
+                </div>
+                <div class="field">
+                  <label>Enrollment Date</label>
+                  <input type="date" name="enroll_date" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <div class="field">
+                  <label>DOB</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dobInput"
+                    onchange="calculateAge()"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="age-display" id="ageLabel">Age: --</div>
+              <input type="hidden" name="age" id="ageHidden" />
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
+              <input
+                type="text"
+                name="occupation"
+                placeholder="Occupation"
+                required
+              />
+              <textarea
+                name="description"
+                placeholder="Description (Physical details, etc.)"
+              ></textarea>
+
+              <div class="fee-section">
+                <button type="button" class="fee-toggle" onclick="toggleFees()">
+                  FEES DETAILS
+                </button>
+                <div id="fee-content" style="display: none">
+                  <p><strong>Total Fee: 4000</strong></p>
+                  <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    placeholder="Enter Discount Amount"
+                    oninput="calcRemaining()"
+                  />
+                  <p>Remaining Fee: <span id="remDisplay">4000</span></p>
+                  <input
+                    type="hidden"
+                    name="total_remaining"
+                    id="totalRemainingHidden"
+                  />
+
+                  <div class="installment-box">
+                    <h4>First Installment</h4>
+                    <input
+                      type="number"
+                      name="inst1_amount"
+                      placeholder="Amount Paid"
+                    />
+                    <input type="date" name="inst1_date" />
+                    <select name="inst1_mode">
+                      <option value="Cash">Cash</option>
+                      <option value="UPI">UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst1_rem"
+                      placeholder="Balance Remaining"
+                    />
+                  </div>
+
+                  <div class="installment-box">
+                    <h4>Second Installment</h4>
+                    <input
+                      type="number"
+                      name="inst2_amount"
+                      placeholder="Amount Paid"
+                    />
+                    <input type="date" name="inst2_date" />
+                    <select name="inst2_mode">
+                      <option value="Cash">Cash</option>
+                      <option value="UPI">UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst2_rem"
+                      placeholder="Balance Remaining"
+                    />
+                  </div>
+
+                  <div class="status-mark">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="payment_done"
+                        id="payDoneCheck"
+                      />
+                      <strong>Mark Payment as Fully Done</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="file-input">
+                <label>Profile Photo</label>
+                <input type="file" name="photo" accept="image/*" />
+              </div>
+
+              <button type="submit" class="submit-btn">
+                Submit Registration
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section id="history-page" class="page" style="display: none">
+          <div class="history-container" id="history-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
+-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registry Portal</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="overlay">
+      <nav class="top-nav">
+        <button class="nav-btn" onclick="showPage('form-page')">
+          Register
+        </button>
+        <button class="nav-btn" onclick="loadHistory()">Customer Info</button>
+      </nav>
+
+      <main class="main-container">
+        <section id="form-page" class="page">
+          <div class="glass-card">
+            <h1>Registration Form</h1>
+            <form id="regForm">
+              <div class="custom-select">
+                <span>Membership Type:</span>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="membership"
+                      value="KAA with KMTS"
+                      checked
+                    />
+                    KAA with KMTS</label
+                  >
+                  <label
+                    ><input type="radio" name="membership" value="Only KMTS" />
+                    Only KMTS</label
+                  >
+                </div>
+              </div>
+
+              <div class="input-group">
+                <div class="field">
+                  <label>Enrollment No.</label>
+                  <input type="text" name="enrollment" required />
+                </div>
+                <div class="field">
+                  <label>Enrollment Date</label>
+                  <input type="date" name="enroll_date" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <div class="field">
+                  <label>DOB</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dobInput"
+                    onchange="calculateAge()"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="age-display" id="ageLabel">Age: --</div>
+              <input type="hidden" name="age" id="ageHidden" />
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
+              <input
+                type="text"
+                name="occupation"
+                placeholder="Occupation"
+                required
+              />
+              <textarea name="description" placeholder="Description"></textarea>
+
+              <div class="custom-select">
+                <span>Driving License:</span>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="Yes"
+                      onclick="toggleLicense(true)"
+                    />
+                    Yes</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="No"
+                      checked
+                      onclick="toggleLicense(false)"
+                    />
+                    No</label
+                  >
+                </div>
+              </div>
+              <div id="license-no-box" style="display: none" class="field">
+                <label>License Number</label>
+                <input
+                  type="text"
+                  name="license_no"
+                  placeholder="Enter License No."
+                />
+              </div>
+
+              <div class="fee-section">
+                <button type="button" class="fee-toggle" onclick="toggleFees()">
+                  FEES DETAILS
+                </button>
+                <div id="fee-content" style="display: none">
+                  <p><strong>Total Fee: 4000</strong></p>
+                  <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    placeholder="Discount Amount"
+                    oninput="calcRemaining()"
+                  />
+                  <p>Remaining: <span id="remDisplay">4000</span></p>
+                  <input
+                    type="hidden"
+                    name="total_remaining"
+                    id="totalRemainingHidden"
+                  />
+
+                  <div class="installment-box">
+                    <h4>First Installment</h4>
+                    <input
+                      type="number"
+                      name="inst1_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst1_date" />
+                    <select name="inst1_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst1_rem"
+                      placeholder="Remaining"
+                    />
+                  </div>
+
+                  <div class="installment-box">
+                    <h4>Second Installment</h4>
+                    <input
+                      type="number"
+                      name="inst2_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst2_date" />
+                    <select name="inst2_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst2_rem"
+                      placeholder="Remaining"
+                    />
+                  </div>
+
+                  <div class="status-mark">
+                    <label
+                      ><input type="checkbox" name="payment_done" /> Mark
+                      Payment Done</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <input type="file" name="photo" accept="image/*" />
+              <button type="submit" class="submit-btn">
+                Submit Registration
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section id="history-page" class="page" style="display: none">
+          <div class="history-container" id="history-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
+-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customer Management Portal</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="overlay">
+      <nav class="top-nav">
+        <button class="nav-btn" onclick="showPage('form-page')">
+          Registration
+        </button>
+        <button class="nav-btn" onclick="loadHistory()">Customer Info</button>
+      </nav>
+
+      <main class="main-container">
+        <section id="form-page" class="page">
+          <div class="glass-card">
+            <h1>Register New Account</h1>
+            <form id="regForm">
+              <div class="custom-select">
+                <span>Membership Type:</span>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="membership"
+                      value="KAA with KMTS"
+                      checked
+                    />
+                    KAA with KMTS</label
+                  >
+                  <label
+                    ><input type="radio" name="membership" value="Only KMTS" />
+                    Only KMTS</label
+                  >
+                </div>
+              </div>
+
+              <div class="input-group">
+                <div class="field">
+                  <label>Enrollment No.</label>
+                  <input type="text" name="enrollment" required />
+                </div>
+                <div class="field">
+                  <label>Enrollment Date</label>
+                  <input type="date" name="enroll_date" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <div class="field">
+                  <label>Date of Birth</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dobInput"
+                    onchange="calculateAge()"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="age-display" id="ageLabel">Age: --</div>
+              <input type="hidden" name="age" id="ageHidden" />
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
+              <input
+                type="text"
+                name="occupation"
+                placeholder="Occupation"
+                required
+              />
+              <textarea
+                name="description"
+                placeholder="Description / Physical Details"
+              ></textarea>
+
+              <div class="custom-select">
+                <span>Driving License:</span>
+                <div class="radio-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="Yes"
+                      onclick="toggleLicense(true)"
+                    />
+                    Yes</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="No"
+                      checked
+                      onclick="toggleLicense(false)"
+                    />
+                    No</label
+                  >
+                </div>
+              </div>
+              <div id="license-no-box" style="display: none" class="field">
+                <label>License Number</label>
+                <input
+                  type="text"
+                  name="license_no"
+                  placeholder="Enter License No."
+                />
+              </div>
+
+              <div class="fee-section">
+                <button type="button" class="fee-toggle" onclick="toggleFees()">
+                  CLICK TO ENTER FEES & SUBMIT
+                </button>
+
+                <div id="fee-content" style="display: none">
+                  <p><strong>Total Fee: 4000</strong></p>
+                  <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    placeholder="Discount"
+                    oninput="calcRemaining()"
+                  />
+                  <p>Remaining: <span id="remDisplay">4000</span></p>
+                  <input
+                    type="hidden"
+                    name="total_remaining"
+                    id="totalRemainingHidden"
+                  />
+
+                  <div class="installment-box">
+                    <h4>First Installment</h4>
+                    <input
+                      type="number"
+                      name="inst1_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst1_date" />
+                    <select name="inst1_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst1_rem"
+                      placeholder="Remaining"
+                    />
+                  </div>
+
+                  <div class="installment-box">
+                    <h4>Second Installment</h4>
+                    <input
+                      type="number"
+                      name="inst2_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst2_date" />
+                    <select name="inst2_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst2_rem"
+                      placeholder="Remaining"
+                    />
+                  </div>
+
+                  <div class="status-mark">
+                    <label
+                      ><input type="checkbox" name="payment_done" /> Mark
+                      Payment as Done</label
+                    >
+                  </div>
+
+                  <div class="file-input-box">
+                    <label>Upload Profile Photo</label>
+                    <input type="file" name="photo" accept="image/*" />
+                  </div>
+
+                  <button type="submit" class="submit-btn">
+                    SAVE REGISTRATION
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="history-page" class="page" style="display: none">
+          <div class="history-container" id="history-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customer Regestration Portal</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="overlay">
+      <nav class="top-nav">
+        <button class="nav-btn" onclick="showPage('form-page')">
+          Register
+        </button>
+        <button class="nav-btn" onclick="loadHistory()">Customer Info</button>
+      </nav>
+
+      <main class="main-container">
+        <section id="form-page" class="page">
+          <div class="glass-card">
+            <h1>Regestration Form</h1>
+            <form id="regForm">
+              <div class="custom-select">
+                <span>Membership Type:</span>
+                <div class="radio-group">
+                  <label class="radio-item"
+                    ><input
+                      type="radio"
+                      name="membership"
+                      value="KAA with KMTS"
+                      checked
+                    />
+                    KAA with KMTS</label
+                  >
+                  <label class="radio-item"
+                    ><input type="radio" name="membership" value="Only KMTS" />
+                    KMTS</label
+                  >
+                </div>
+              </div>
+
+              <div class="input-group">
+                <div class="field">
+                  <label>Enrollment No.</label
+                  ><input type="text" name="enrollment" required />
+                </div>
+                <div class="field">
+                  <label>Enrollment Date</label
+                  ><input type="date" name="enroll_date" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                />
+                <div class="field">
+                  <label>DOB</label
+                  ><input
+                    type="date"
+                    id="dobInput"
+                    name="dob"
+                    onchange="calculateAge()"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="age-display" id="ageLabel">Age: --</div>
+              <input type="hidden" name="age" id="ageHidden" />
+
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
+              <input
+                type="text"
+                name="occupation"
+                placeholder="Occupation"
+                required
+              />
+              <textarea name="description" placeholder="Description"></textarea>
+
+              <div class="custom-select">
+                <span>Driving License:</span>
+                <div class="radio-group">
+                  <label class="radio-item"
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="Yes"
+                      onclick="toggleLicense(true)"
+                    />
+                    Yes</label
+                  >
+                  <label class="radio-item"
+                    ><input
+                      type="radio"
+                      name="license"
+                      value="No"
+                      checked
+                      onclick="toggleLicense(false)"
+                    />
+                    No</label
+                  >
+                </div>
+              </div>
+              <div id="license-no-box" style="display: none" class="field">
+                <label>License Number</label
+                ><input type="text" name="license_no" />
+              </div>
+
+              <div class="fee-section">
+                <button type="button" class="fee-toggle" onclick="toggleFees()">
+                  FEE SECTION
+                </button>
+                <div id="fee-content" style="display: none">
+                  <p>Total Fee: 4000</p>
+                  <input
+                    type="number"
+                    id="discount"
+                    name="discount"
+                    placeholder="Discount"
+                    oninput="calcRemaining()"
+                  />
+                  <p>Payble Amount: <span id="remDisplay">4000</span></p>
+                  <input
+                    type="hidden"
+                    name="total_remaining"
+                    id="totalRemainingHidden"
+                  />
+
+                  <div class="installment-box">
+                    <h4>First Installment</h4>
+                    <input
+                      type="number"
+                      name="inst1_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst1_date" />
+                    <select name="inst1_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst1_rem"
+                      placeholder="Rem. After Inst 1"
+                    />
+                  </div>
+
+                  <div class="installment-box">
+                    <h4>Second Installment</h4>
+                    <input
+                      type="number"
+                      name="inst2_amount"
+                      placeholder="Amount"
+                    />
+                    <input type="date" name="inst2_date" />
+                    <select name="inst2_mode">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                    </select>
+                    <input
+                      type="number"
+                      name="inst2_rem"
+                      placeholder="Rem. After Inst 2"
+                    />
+                  </div>
+
+                  <div class="status-mark">
+                    <label class="checkbox-item"
+                      ><input type="checkbox" name="payment_done" /> Mark
+                      Payment as Done</label
+                    >
+                  </div>
+
+                  <div class="file-input-box">
+                    <label>Upload Photo</label
+                    ><input type="file" name="photo" accept="image/*" />
+                  </div>
+
+                  <button type="submit" class="submit-btn">SUBMIT</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="history-page" class="page" style="display: none">
+          <div class="history-container" id="history-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
